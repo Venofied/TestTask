@@ -1,0 +1,33 @@
+﻿@model TestTask.models.Employee
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Изменение сотрудника</h1>
+<h2>Сотрудник @Model.Name</h2>
+
+@using (Html.BeginForm("EditEmp", "Employee", FormMethod.Post))
+{
+    <br />
+    @Html.HiddenFor(model => model.ID)
+    @Html.LabelFor(model => model.Name, "ФИО")
+    <br />
+    @Html.EditorFor(model => model.Name)
+    <br />
+    <br />
+    @Html.LabelFor(model => model.Salary, "Зарплата")
+    <br />
+    @Html.EditorFor(model => model.Salary)
+    <br />
+    <br />
+    @Html.LabelFor(model => model.Name_department, "Отдел")
+    <br />
+    @Html.DropDownListFor(model => model.Id_department, ViewBag.Departs as SelectList)
+    <br />
+    <br />
+    <input type="submit" value="Изменить" />
+}
+<div>
+    @Html.ActionLink("Вернуться к списку Сотрудников", "Index", "Employee")
+</div>
+

@@ -1,0 +1,21 @@
+﻿@model TestTask.models.Department
+
+@{
+    ViewData["Title"] = "Создание отдела";
+}
+
+<h1>Создание отдела</h1>
+
+@using (Html.BeginForm("CreateDep", "Department", FormMethod.Post))
+{
+    <p>Введите название отдела: </p>
+    <input id="nameDep" name="nameDep" type="text" value="@ViewBag.Name" />
+    <input type="submit" value="Submit">
+}
+<div>
+    @Html.ActionLink("Вернуться к списку отделов", "Index")
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

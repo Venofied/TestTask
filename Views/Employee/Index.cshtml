@@ -1,0 +1,92 @@
+﻿@using TestTask.models
+@model IEnumerable<Employee>
+@{
+    ViewData["Title"] = "Employee";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Сотрудники</title>
+</head>
+<body>
+    <h2>Сотрудники</h2>
+    <p>
+        @Html.ActionLink("Добавить сотрудника", "Create")
+    </p>
+    <table class="table">
+        <style type="text/css">
+            .table {
+                border: 1px solid #eee;
+                table-layout: fixed;
+                width: 100%;
+                margin-bottom: 20px;
+            }
+
+                .table th {
+                    font-weight: bold;
+                    padding: 5px;
+                    background: #efefef;
+                    border: 1px solid #dddddd;
+                }
+
+                .table td {
+                    padding: 5px 10px;
+                    border: 1px solid #eee;
+                    text-align: left;
+                }
+
+                .table tbody tr:nth-child(odd) {
+                    background: #fff;
+                }
+
+                .table tbody tr:nth-child(even) {
+                    background: #F7F7F7;
+                }
+        </style>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>ФИО</th>
+                <th>Зарплата</th>
+                <th>Отдел</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Salary)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name_department)
+                </td>
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", "Employee", new { id = @item.ID, IdEmp = @item.ID })
+                </td>
+                <td>
+                    <form method="post" action="Index">
+                        <input type="hidden" name="id" value=@item.ID /><br />
+                        <input type="submit" value="Удалить" />
+                    </form>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+    <p>
+        @Html.ActionLink("Отделы", "Index", "Department")
+    </p>
+</body>
+</html>
+

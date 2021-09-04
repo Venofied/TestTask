@@ -1,0 +1,26 @@
+﻿@model TestTask.models.Department
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<head>
+    <title>Редактирование отдела @ViewBag.nameDepartment</title>
+</head>
+
+<h2>Отдел: @Model.Name</h2>
+@using (Html.BeginForm("EditDep", "Department", FormMethod.Post))
+{
+    <fieldset>
+        @Html.HiddenFor(m => m.ID)
+        <p>
+            @Html.LabelFor(m => m.Name, "Название Отдела")
+            <br />
+            @Html.EditorFor(m => m.Name)
+        </p>
+        <p><input type="submit" value="Изменить" /></p>
+    </fieldset>
+}
+<div>
+    @Html.ActionLink("Список отделов", "Index")
+</div>
+

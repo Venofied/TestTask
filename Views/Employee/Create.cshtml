@@ -1,0 +1,30 @@
+﻿@model TestTask.models.Employee
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Добавление сотрудника</h1>
+
+@using (Html.BeginForm("CreateEmp", "Employee", FormMethod.Post))
+{
+    @Html.LabelFor(model => model.Name, "ФИО")
+    <br />
+    @Html.EditorFor(model => model.Name)
+    <br />
+    <br />
+    @Html.LabelFor(model => model.Salary, "Зарплата")
+    <br />
+    @Html.EditorFor(model => model.Salary)
+    <br />
+    <br />
+    @Html.LabelFor(model => model.Name_department, "Отдел")
+    <br />
+    @Html.DropDownListFor(model => model.Name_department, ViewBag.Departs as SelectList)
+    <br />
+    <br />
+    <input type="submit" value="Добавить" />
+}
+<div>
+    @Html.ActionLink("Вернуться к списку Сотрудников", "Index", "Employee")
+</div>
+
